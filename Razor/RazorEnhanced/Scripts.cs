@@ -258,7 +258,7 @@ namespace RazorEnhanced
         {
             internal bool StopMessage { get; set; }
             internal bool StartMessage { get; set; }
-            private PythonEngine m_pe;
+            private static PythonEngine m_pe;
             internal DateTime FileChangeDate { get; set; }
 
             internal EnhancedScript(string filename, string text, bool wait, bool loop, bool run, bool autostart)
@@ -333,17 +333,17 @@ namespace RazorEnhanced
                         uosteam.Execute(fullpath);
                     }
                     else
-                    {
-                        DateTime lastModified = System.IO.File.GetLastWriteTime(fullpath);
+                    {              
+                        DateTime lastModified = System.IO.File.GetLastWriteTime( fullpath );
                         if (FileChangeDate < lastModified)
                         {
-                            ReadText(fullpath);
-                            Create(null);
-                            
+                            //TODO: Verificar uma maneira de pegar os arquivos atualizados e recompilar    
+                            ReadText( fullpath );
+                            //Create(null); Retirado para testa carregar em outro momento e evitar o lazy start
                             // FileChangeDate update must be the last line of threads will messup (ex: mousewheel hotkeys)
                             FileChangeDate = System.IO.File.GetLastWriteTime(fullpath);
                         }
-
+                        
                         m_pe.Execute(m_Text);
                     }
                 }
@@ -436,13 +436,14 @@ namespace RazorEnhanced
                 m_Run = false;
             }
 
-            internal string Create(TracebackDelegate traceFunc)
-            {
-                string result = String.Empty;
-                try
-                {
-                    Action<string> action = (aString) => { Misc.SendMessage(aString.Trim('\r', '\n'), 55, false); };
-                    m_pe = new PythonEngine(action);
+			internal static string Create(TracebackDelegate traceFunc)
+			{
+				string result = String.Empty;
+				try
+				{
+					Action<string> action = (aString) => { Misc.SendMessage(aString.Trim('\r', '\n'), 55, false); };
+
+					m_pe = new PythonEngine(action);
                     
                     var pc = Microsoft.Scripting.Hosting.Providers.HostingHelpers.GetLanguageContext(m_pe.Engine) as PythonContext;
                     var temp = pc.SystemState.Get__dict__()["path_hooks"];
@@ -915,9 +916,6 @@ namespace RazorEnhanced
             return watcher;
         }
 
-
-
-
         internal static EnhancedScript Search(string filename)
         {
             foreach (KeyValuePair<string, EnhancedScript> pair in EnhancedScripts)
@@ -929,14 +927,19 @@ namespace RazorEnhanced
             return null;
         }
 
-        // Autostart
-        internal static void AutoStart()
-        {
+		// Autostart
+		internal static void AutoStart()
+		{
             foreach (EnhancedScript script in EnhancedScripts.Values.ToList())
-            {
-                if (!script.IsRunning && script.AutoStart)
-                    script.Start();
-            }
+			{
+				if (!script.IsRunning && script.AutoStart)
+					script.Start();
+			}
+		}
+
+        internal static void LoadPyLibs()
+        {
+            EnhancedScript.Create( null );
         }
-    }
+	}
 }
