@@ -12,6 +12,7 @@ Release/
 UltimaSDK/bin/
 UltimaSDK/obj/
 /.vs/
+bin/*
 bin/Win32/Debug/*.dll
 bin/Win32/Debug/*.xml
 bin/Win32/Debug/*.pdb
