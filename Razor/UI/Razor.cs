@@ -753,6 +753,8 @@ namespace Assistant
                     new MenuItem( "Close Razor && UO", new EventHandler( OnClose ) ),
                 });
             m_NotifyIcon.ContextMenu.MenuItems[0].DefaultItem = true;
+
+            RazorEnhanced.Scripts.LoadPyLibs();
         }
 
         /// <summary>
