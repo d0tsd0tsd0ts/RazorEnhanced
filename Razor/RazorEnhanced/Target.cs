@@ -640,10 +640,14 @@ namespace RazorEnhanced
         {
             if (Assistant.Engine.MainWindow.ShowHeadTargetCheckBox.Checked)
             {
+                if (GetLast() == serial) return;
+
+                if (Mobiles.FindBySerial(serial) == null) return;
+                
                 if (Friend.IsFriend(serial))
                     Mobiles.Message(World.Player.Serial, 63, "Target: [" + GetPlayerName(serial) + "]", wait);
                 else
-                    Mobiles.Message(World.Player.Serial, GetPlayerColor(Mobiles.FindBySerial(serial)), "Target: [" + GetPlayerName(serial) + "]", wait);
+                    Mobiles.Message(World.Player.Serial, GetPlayerColor(Mobiles.FindBySerial(serial)), "Target: [" + GetPlayerName(serial) + "]", wait);                
             }
 
             if (Assistant.Engine.MainWindow.HighlightTargetCheckBox.Checked)
@@ -654,10 +658,15 @@ namespace RazorEnhanced
         {
             if (Assistant.Engine.MainWindow.ShowHeadTargetCheckBox.Checked)
             {
+                if (GetLastAttack() == serial) return;
+
+                if (Mobiles.FindBySerial(serial) == null) return;
+
                 if (Friend.IsFriend(serial))
                     Mobiles.Message(World.Player.Serial, 63, "Attack: [" + GetPlayerName(serial) + "]", wait);
                 else
                     Mobiles.Message(World.Player.Serial, GetPlayerColor(Mobiles.FindBySerial(serial)), "Attack: [" + GetPlayerName(serial) + "]", wait);
+                
             }
 
             if (Assistant.Engine.MainWindow.HighlightTargetCheckBox.Checked)
