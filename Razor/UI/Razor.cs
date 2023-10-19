@@ -89,7 +89,7 @@ namespace Assistant
         private System.Windows.Forms.CheckBox blockDis;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox imgFmt;
-        private readonly ToolTip m_Tip;
+        internal System.Windows.Forms.ToolTip m_Tip;
 
         #endregion Class Variables
         private System.Windows.Forms.CheckBox preAOSstatbar;
@@ -738,7 +738,6 @@ namespace Assistant
 
         internal MainForm()
         {
-            m_Tip = new ToolTip();
             //
             // Required for Windows Form Designer support
             //
@@ -1485,6 +1484,7 @@ namespace Assistant
             this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timertitlestatusbar = new System.Windows.Forms.Timer(this.components);
             this.openmaplocation = new System.Windows.Forms.OpenFileDialog();
+            this.m_Tip = new System.Windows.Forms.ToolTip(this.components);
             this.tabs.SuspendLayout();
             this.generalTab.SuspendLayout();
             this.groupBox29.SuspendLayout();
@@ -1625,7 +1625,7 @@ namespace Assistant
             this.friendlistView.MinimumSize = new System.Drawing.Size(10, 10);
             this.friendlistView.MultiSelect = false;
             this.friendlistView.Name = "friendlistView";
-            this.friendlistView.Size = new System.Drawing.Size(378, 194);
+            this.friendlistView.Size = new System.Drawing.Size(378, 193);
             this.friendlistView.TabIndex = 64;
             this.friendlistView.UseCompatibleStateImageBehavior = false;
             this.friendlistView.View = System.Windows.Forms.View.Details;
@@ -1664,7 +1664,7 @@ namespace Assistant
             this.friendguildListView.MinimumSize = new System.Drawing.Size(10, 10);
             this.friendguildListView.MultiSelect = false;
             this.friendguildListView.Name = "friendguildListView";
-            this.friendguildListView.Size = new System.Drawing.Size(378, 202);
+            this.friendguildListView.Size = new System.Drawing.Size(378, 208);
             this.friendguildListView.TabIndex = 77;
             this.friendguildListView.UseCompatibleStateImageBehavior = false;
             this.friendguildListView.View = System.Windows.Forms.View.Details;
@@ -1705,7 +1705,7 @@ namespace Assistant
             this.tabs.Name = "tabs";
             this.tabs.Padding = new System.Drawing.Point(9, 3);
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(1108, 631);
+            this.tabs.Size = new System.Drawing.Size(1107, 631);
             this.tabs.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabs.TabIndex = 0;
             this.tabs.SelectedIndexChanged += new System.EventHandler(this.tabs_IndexChanged);
@@ -1734,7 +1734,7 @@ namespace Assistant
             this.generalTab.Controls.Add(this.label9);
             this.generalTab.Location = new System.Drawing.Point(4, 54);
             this.generalTab.Name = "generalTab";
-            this.generalTab.Size = new System.Drawing.Size(1100, 573);
+            this.generalTab.Size = new System.Drawing.Size(1099, 573);
             this.generalTab.TabIndex = 0;
             this.generalTab.Text = "General";
             // 
@@ -1992,8 +1992,9 @@ namespace Assistant
             this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupBox1.Controls.Add(this.filters);
             this.groupBox1.Location = new System.Drawing.Point(5, 12);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(323, 546);
+            this.groupBox1.Size = new System.Drawing.Size(323, 515);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filters";
@@ -2007,7 +2008,7 @@ namespace Assistant
             this.filters.IntegralHeight = false;
             this.filters.Location = new System.Drawing.Point(10, 23);
             this.filters.Name = "filters";
-            this.filters.Size = new System.Drawing.Size(304, 511);
+            this.filters.Size = new System.Drawing.Size(304, 479);
             this.filters.TabIndex = 0;
             this.filters.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.OnFilterCheck);
             // 
@@ -2086,9 +2087,9 @@ namespace Assistant
             this.moreOptTab.Controls.Add(this.txtSpellFormat);
             this.moreOptTab.Controls.Add(this.chkForceSpellHue);
             this.moreOptTab.Controls.Add(this.chkForceSpeechHue);
-            this.moreOptTab.Location = new System.Drawing.Point(4, 54);
+            this.moreOptTab.Location = new System.Drawing.Point(4, 29);
             this.moreOptTab.Name = "moreOptTab";
-            this.moreOptTab.Size = new System.Drawing.Size(1100, 573);
+            this.moreOptTab.Size = new System.Drawing.Size(1771, 895);
             this.moreOptTab.TabIndex = 5;
             this.moreOptTab.Text = "Options";
             // 
@@ -2642,9 +2643,9 @@ namespace Assistant
             // enhancedFilterTab
             // 
             this.enhancedFilterTab.Controls.Add(this.FilterPages);
-            this.enhancedFilterTab.Location = new System.Drawing.Point(4, 54);
+            this.enhancedFilterTab.Location = new System.Drawing.Point(4, 29);
             this.enhancedFilterTab.Name = "enhancedFilterTab";
-            this.enhancedFilterTab.Size = new System.Drawing.Size(1100, 573);
+            this.enhancedFilterTab.Size = new System.Drawing.Size(1771, 895);
             this.enhancedFilterTab.TabIndex = 10;
             this.enhancedFilterTab.Text = "Filters";
             // 
@@ -2658,7 +2659,7 @@ namespace Assistant
             this.FilterPages.Location = new System.Drawing.Point(-3, 3);
             this.FilterPages.Name = "FilterPages";
             this.FilterPages.SelectedIndex = 0;
-            this.FilterPages.Size = new System.Drawing.Size(1061, 531);
+            this.FilterPages.Size = new System.Drawing.Size(1733, 852);
             this.FilterPages.TabIndex = 0;
             // 
             // MiscFilterPage
@@ -2672,7 +2673,7 @@ namespace Assistant
             this.MiscFilterPage.Location = new System.Drawing.Point(4, 29);
             this.MiscFilterPage.Name = "MiscFilterPage";
             this.MiscFilterPage.Padding = new System.Windows.Forms.Padding(3);
-            this.MiscFilterPage.Size = new System.Drawing.Size(1053, 498);
+            this.MiscFilterPage.Size = new System.Drawing.Size(1725, 819);
             this.MiscFilterPage.TabIndex = 0;
             this.MiscFilterPage.Text = "Misc";
             this.MiscFilterPage.UseVisualStyleBackColor = true;
@@ -2683,7 +2684,7 @@ namespace Assistant
             this.uomodgroupbox.Controls.Add(this.uomodpaperdollCheckBox);
             this.uomodgroupbox.Controls.Add(this.uomodglobalsoundCheckBox);
             this.uomodgroupbox.Controls.Add(this.uomodFPSCheckBox);
-            this.uomodgroupbox.Location = new System.Drawing.Point(310, 289);
+            this.uomodgroupbox.Location = new System.Drawing.Point(310, 605);
             this.uomodgroupbox.Name = "uomodgroupbox";
             this.uomodgroupbox.Size = new System.Drawing.Size(375, 98);
             this.uomodgroupbox.TabIndex = 75;
@@ -2728,7 +2729,7 @@ namespace Assistant
             this.groupBox32.Controls.Add(this.label47);
             this.groupBox32.Controls.Add(this.remountsetbutton);
             this.groupBox32.Controls.Add(this.remountcheckbox);
-            this.groupBox32.Location = new System.Drawing.Point(775, 251);
+            this.groupBox32.Location = new System.Drawing.Point(1446, 251);
             this.groupBox32.Name = "groupBox32";
             this.groupBox32.Size = new System.Drawing.Size(264, 173);
             this.groupBox32.TabIndex = 74;
@@ -2974,7 +2975,7 @@ namespace Assistant
             this.groupBox23.Controls.Add(this.mobfilterCheckBox);
             this.groupBox23.Location = new System.Drawing.Point(310, 0);
             this.groupBox23.Name = "groupBox23";
-            this.groupBox23.Size = new System.Drawing.Size(439, 280);
+            this.groupBox23.Size = new System.Drawing.Size(1111, 595);
             this.groupBox23.TabIndex = 72;
             this.groupBox23.TabStop = false;
             this.groupBox23.Text = "Mobile Graphics Change Filter";
@@ -2997,7 +2998,7 @@ namespace Assistant
             this.graphfilterdatagrid.Name = "graphfilterdatagrid";
             this.graphfilterdatagrid.RowHeadersVisible = false;
             this.graphfilterdatagrid.RowHeadersWidth = 62;
-            this.graphfilterdatagrid.Size = new System.Drawing.Size(419, 193);
+            this.graphfilterdatagrid.Size = new System.Drawing.Size(1091, 507);
             this.graphfilterdatagrid.TabIndex = 69;
             this.graphfilterdatagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
             this.graphfilterdatagrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.graphfilterdatagrid_CellEndEdit);
@@ -3074,9 +3075,9 @@ namespace Assistant
             this.groupBox10.Controls.Add(this.label34);
             this.groupBox10.Controls.Add(this.autocarverrazorButton);
             this.groupBox10.Controls.Add(this.autocarverCheckBox);
-            this.groupBox10.Location = new System.Drawing.Point(773, 0);
+            this.groupBox10.Location = new System.Drawing.Point(1445, 0);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(266, 117);
+            this.groupBox10.Size = new System.Drawing.Size(265, 117);
             this.groupBox10.TabIndex = 71;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Auto Carver";
@@ -3125,9 +3126,9 @@ namespace Assistant
             this.groupBox9.Controls.Add(this.label16);
             this.groupBox9.Controls.Add(this.boneCutterrazorButton);
             this.groupBox9.Controls.Add(this.bonecutterCheckBox);
-            this.groupBox9.Location = new System.Drawing.Point(773, 126);
+            this.groupBox9.Location = new System.Drawing.Point(1445, 126);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(266, 117);
+            this.groupBox9.Size = new System.Drawing.Size(265, 117);
             this.groupBox9.TabIndex = 70;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Bone Cutter";
@@ -3175,7 +3176,7 @@ namespace Assistant
             this.JournalFilterPage.Location = new System.Drawing.Point(4, 29);
             this.JournalFilterPage.Name = "JournalFilterPage";
             this.JournalFilterPage.Padding = new System.Windows.Forms.Padding(3);
-            this.JournalFilterPage.Size = new System.Drawing.Size(1053, 498);
+            this.JournalFilterPage.Size = new System.Drawing.Size(1725, 819);
             this.JournalFilterPage.TabIndex = 1;
             this.JournalFilterPage.Text = "Journal";
             this.JournalFilterPage.UseVisualStyleBackColor = true;
@@ -3193,7 +3194,7 @@ namespace Assistant
             this.journalfilterdatagrid.RowHeadersVisible = false;
             this.journalfilterdatagrid.RowHeadersWidth = 62;
             this.journalfilterdatagrid.RowTemplate.Height = 28;
-            this.journalfilterdatagrid.Size = new System.Drawing.Size(1029, 461);
+            this.journalfilterdatagrid.Size = new System.Drawing.Size(1028, 466);
             this.journalfilterdatagrid.TabIndex = 0;
             this.journalfilterdatagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
             this.journalfilterdatagrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.journalfilterdatagrid_CellEndEdit);
@@ -3235,7 +3236,7 @@ namespace Assistant
             this.AllScripts.Controls.Add(this.AllScriptsTab);
             this.AllScripts.Location = new System.Drawing.Point(4, 54);
             this.AllScripts.Name = "AllScripts";
-            this.AllScripts.Size = new System.Drawing.Size(1100, 573);
+            this.AllScripts.Size = new System.Drawing.Size(1099, 573);
             this.AllScripts.TabIndex = 19;
             this.AllScripts.Text = "Scripting";
             this.AllScripts.UseVisualStyleBackColor = true;
@@ -3255,9 +3256,9 @@ namespace Assistant
             this.scriptControlBox.Controls.Add(this.scripterrorlogCheckBox);
             this.scriptControlBox.Controls.Add(this.groupBox31);
             this.scriptControlBox.Controls.Add(this.showscriptmessageCheckBox);
-            this.scriptControlBox.Location = new System.Drawing.Point(775, 3);
+            this.scriptControlBox.Location = new System.Drawing.Point(774, 3);
             this.scriptControlBox.Name = "scriptControlBox";
-            this.scriptControlBox.Size = new System.Drawing.Size(322, 587);
+            this.scriptControlBox.Size = new System.Drawing.Size(324, 587);
             this.scriptControlBox.TabIndex = 1;
             this.scriptControlBox.TabStop = false;
             // 
@@ -3265,9 +3266,9 @@ namespace Assistant
             // 
             this.scriptPacketLogCheckBox.AccessibleDescription = "";
             this.scriptPacketLogCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.scriptPacketLogCheckBox.Location = new System.Drawing.Point(18, 524);
+            this.scriptPacketLogCheckBox.Location = new System.Drawing.Point(18, 525);
             this.scriptPacketLogCheckBox.Name = "scriptPacketLogCheckBox";
-            this.scriptPacketLogCheckBox.Size = new System.Drawing.Size(256, 34);
+            this.scriptPacketLogCheckBox.Size = new System.Drawing.Size(256, 33);
             this.scriptPacketLogCheckBox.TabIndex = 79;
             this.scriptPacketLogCheckBox.Text = "Enable Packet Logging";
             this.scriptPacketLogCheckBox.CheckStateChanged += new System.EventHandler(this.scriptPacketLogCheckBox_CheckStateChanged);
@@ -3277,9 +3278,9 @@ namespace Assistant
             this.InspectGumpsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InspectGumpsButton.Image = global::Assistant.Properties.Resources.gump;
             this.InspectGumpsButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.InspectGumpsButton.Location = new System.Drawing.Point(129, 17);
+            this.InspectGumpsButton.Location = new System.Drawing.Point(130, 18);
             this.InspectGumpsButton.Name = "InspectGumpsButton";
-            this.InspectGumpsButton.Size = new System.Drawing.Size(159, 30);
+            this.InspectGumpsButton.Size = new System.Drawing.Size(158, 29);
             this.InspectGumpsButton.TabIndex = 78;
             this.InspectGumpsButton.Text = "Inspect Gump";
             this.InspectGumpsButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -3535,7 +3536,7 @@ namespace Assistant
             this.AllScriptsTab.Location = new System.Drawing.Point(-3, 0);
             this.AllScriptsTab.Name = "AllScriptsTab";
             this.AllScriptsTab.SelectedIndex = 0;
-            this.AllScriptsTab.Size = new System.Drawing.Size(772, 570);
+            this.AllScriptsTab.Size = new System.Drawing.Size(773, 570);
             this.AllScriptsTab.TabIndex = 0;
             // 
             // pythonScriptingTab
@@ -3545,7 +3546,7 @@ namespace Assistant
             this.pythonScriptingTab.Location = new System.Drawing.Point(4, 29);
             this.pythonScriptingTab.Name = "pythonScriptingTab";
             this.pythonScriptingTab.Padding = new System.Windows.Forms.Padding(3);
-            this.pythonScriptingTab.Size = new System.Drawing.Size(764, 537);
+            this.pythonScriptingTab.Size = new System.Drawing.Size(765, 537);
             this.pythonScriptingTab.TabIndex = 13;
             this.pythonScriptingTab.Text = "Python";
             // 
@@ -3572,7 +3573,7 @@ namespace Assistant
             this.pyScriptListView.MultiSelect = false;
             this.pyScriptListView.Name = "pyScriptListView";
             this.pyScriptListView.ShowItemToolTips = true;
-            this.pyScriptListView.Size = new System.Drawing.Size(743, 516);
+            this.pyScriptListView.Size = new System.Drawing.Size(743, 510);
             this.pyScriptListView.TabIndex = 48;
             this.pyScriptListView.UseCompatibleStateImageBehavior = false;
             this.pyScriptListView.View = System.Windows.Forms.View.Details;
@@ -3641,7 +3642,7 @@ namespace Assistant
             this.uosScriptingTab.Controls.Add(this.uosScriptListView);
             this.uosScriptingTab.Location = new System.Drawing.Point(4, 29);
             this.uosScriptingTab.Name = "uosScriptingTab";
-            this.uosScriptingTab.Size = new System.Drawing.Size(764, 537);
+            this.uosScriptingTab.Size = new System.Drawing.Size(1437, 859);
             this.uosScriptingTab.TabIndex = 14;
             this.uosScriptingTab.Text = "UOS";
             this.uosScriptingTab.UseVisualStyleBackColor = true;
@@ -3669,7 +3670,7 @@ namespace Assistant
             this.uosScriptListView.MultiSelect = false;
             this.uosScriptListView.Name = "uosScriptListView";
             this.uosScriptListView.ShowItemToolTips = true;
-            this.uosScriptListView.Size = new System.Drawing.Size(751, 516);
+            this.uosScriptListView.Size = new System.Drawing.Size(751, 522);
             this.uosScriptListView.TabIndex = 49;
             this.uosScriptListView.UseCompatibleStateImageBehavior = false;
             this.uosScriptListView.View = System.Windows.Forms.View.Details;
@@ -3738,7 +3739,7 @@ namespace Assistant
             this.csScriptingTab.Controls.Add(this.csScriptListView);
             this.csScriptingTab.Location = new System.Drawing.Point(4, 29);
             this.csScriptingTab.Name = "csScriptingTab";
-            this.csScriptingTab.Size = new System.Drawing.Size(764, 537);
+            this.csScriptingTab.Size = new System.Drawing.Size(1437, 859);
             this.csScriptingTab.TabIndex = 15;
             this.csScriptingTab.Text = "C#";
             this.csScriptingTab.UseVisualStyleBackColor = true;
@@ -3766,7 +3767,7 @@ namespace Assistant
             this.csScriptListView.MultiSelect = false;
             this.csScriptListView.Name = "csScriptListView";
             this.csScriptListView.ShowItemToolTips = true;
-            this.csScriptListView.Size = new System.Drawing.Size(751, 516);
+            this.csScriptListView.Size = new System.Drawing.Size(751, 522);
             this.csScriptListView.TabIndex = 49;
             this.csScriptListView.UseCompatibleStateImageBehavior = false;
             this.csScriptListView.View = System.Windows.Forms.View.Details;
@@ -3833,10 +3834,10 @@ namespace Assistant
             // EnhancedAgent
             // 
             this.EnhancedAgent.Controls.Add(this.tabControl1);
-            this.EnhancedAgent.Location = new System.Drawing.Point(4, 54);
+            this.EnhancedAgent.Location = new System.Drawing.Point(4, 29);
             this.EnhancedAgent.Name = "EnhancedAgent";
             this.EnhancedAgent.Padding = new System.Windows.Forms.Padding(3);
-            this.EnhancedAgent.Size = new System.Drawing.Size(1100, 573);
+            this.EnhancedAgent.Size = new System.Drawing.Size(1771, 895);
             this.EnhancedAgent.TabIndex = 14;
             this.EnhancedAgent.Text = "Agents";
             this.EnhancedAgent.UseVisualStyleBackColor = true;
@@ -3858,7 +3859,7 @@ namespace Assistant
             this.tabControl1.Location = new System.Drawing.Point(5, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1085, 533);
+            this.tabControl1.Size = new System.Drawing.Size(1757, 855);
             this.tabControl1.TabIndex = 0;
             // 
             // eautoloot
@@ -3883,7 +3884,7 @@ namespace Assistant
             this.eautoloot.Location = new System.Drawing.Point(4, 29);
             this.eautoloot.Name = "eautoloot";
             this.eautoloot.Padding = new System.Windows.Forms.Padding(3);
-            this.eautoloot.Size = new System.Drawing.Size(1077, 500);
+            this.eautoloot.Size = new System.Drawing.Size(1749, 822);
             this.eautoloot.TabIndex = 0;
             this.eautoloot.Text = "Autoloot";
             this.eautoloot.UseVisualStyleBackColor = true;
@@ -4001,7 +4002,7 @@ namespace Assistant
             this.autolootdataGridView.Name = "autolootdataGridView";
             this.autolootdataGridView.RowHeadersVisible = false;
             this.autolootdataGridView.RowHeadersWidth = 62;
-            this.autolootdataGridView.Size = new System.Drawing.Size(646, 321);
+            this.autolootdataGridView.Size = new System.Drawing.Size(1317, 637);
             this.autolootdataGridView.TabIndex = 62;
             this.autolootdataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
             this.autolootdataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.autolootdataGridView_CellEndEdit);
@@ -4145,9 +4146,9 @@ namespace Assistant
             this.groupBox13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox13.Controls.Add(this.autolootLogBox);
-            this.groupBox13.Location = new System.Drawing.Point(669, 137);
+            this.groupBox13.Location = new System.Drawing.Point(1341, 137);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(388, 323);
+            this.groupBox13.Size = new System.Drawing.Size(389, 639);
             this.groupBox13.TabIndex = 53;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Autoloot Log";
@@ -4160,7 +4161,7 @@ namespace Assistant
             this.autolootLogBox.ItemHeight = 20;
             this.autolootLogBox.Location = new System.Drawing.Point(10, 28);
             this.autolootLogBox.Name = "autolootLogBox";
-            this.autolootLogBox.Size = new System.Drawing.Size(371, 204);
+            this.autolootLogBox.Size = new System.Drawing.Size(371, 404);
             this.autolootLogBox.TabIndex = 0;
             // 
             // autoLootCheckBox
@@ -4193,7 +4194,7 @@ namespace Assistant
             this.escavenger.Location = new System.Drawing.Point(4, 29);
             this.escavenger.Name = "escavenger";
             this.escavenger.Padding = new System.Windows.Forms.Padding(3);
-            this.escavenger.Size = new System.Drawing.Size(1077, 500);
+            this.escavenger.Size = new System.Drawing.Size(1749, 822);
             this.escavenger.TabIndex = 1;
             this.escavenger.Text = "Scavenger";
             this.escavenger.UseVisualStyleBackColor = true;
@@ -4282,7 +4283,7 @@ namespace Assistant
             this.scavengerdataGridView.Name = "scavengerdataGridView";
             this.scavengerdataGridView.RowHeadersVisible = false;
             this.scavengerdataGridView.RowHeadersWidth = 62;
-            this.scavengerdataGridView.Size = new System.Drawing.Size(588, 316);
+            this.scavengerdataGridView.Size = new System.Drawing.Size(588, 321);
             this.scavengerdataGridView.TabIndex = 72;
             this.scavengerdataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
             this.scavengerdataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.scavengerdataGridView_CellEndEdit);
@@ -4348,9 +4349,9 @@ namespace Assistant
             this.groupBox12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox12.Controls.Add(this.scavengerLogBox);
-            this.groupBox12.Location = new System.Drawing.Point(612, 137);
+            this.groupBox12.Location = new System.Drawing.Point(611, 137);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(445, 318);
+            this.groupBox12.Size = new System.Drawing.Size(447, 323);
             this.groupBox12.TabIndex = 70;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Scavenger Log";
@@ -4363,7 +4364,7 @@ namespace Assistant
             this.scavengerLogBox.ItemHeight = 20;
             this.scavengerLogBox.Location = new System.Drawing.Point(11, 26);
             this.scavengerLogBox.Name = "scavengerLogBox";
-            this.scavengerLogBox.Size = new System.Drawing.Size(424, 204);
+            this.scavengerLogBox.Size = new System.Drawing.Size(424, 104);
             this.scavengerLogBox.TabIndex = 0;
             // 
             // label23
@@ -4478,7 +4479,7 @@ namespace Assistant
             this.organizer.Location = new System.Drawing.Point(4, 29);
             this.organizer.Name = "organizer";
             this.organizer.Padding = new System.Windows.Forms.Padding(3);
-            this.organizer.Size = new System.Drawing.Size(1077, 500);
+            this.organizer.Size = new System.Drawing.Size(1749, 822);
             this.organizer.TabIndex = 2;
             this.organizer.Text = "Organizer";
             this.organizer.UseVisualStyleBackColor = true;
@@ -4602,7 +4603,7 @@ namespace Assistant
             this.organizerdataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.organizerdataGridView.RowHeadersVisible = false;
             this.organizerdataGridView.RowHeadersWidth = 62;
-            this.organizerdataGridView.Size = new System.Drawing.Size(591, 290);
+            this.organizerdataGridView.Size = new System.Drawing.Size(591, 295);
             this.organizerdataGridView.TabIndex = 89;
             this.organizerdataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
             this.organizerdataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.organizerdataGridView_CellEndEdit);
@@ -4677,9 +4678,9 @@ namespace Assistant
             this.groupBox16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox16.Controls.Add(this.organizerLogBox);
-            this.groupBox16.Location = new System.Drawing.Point(615, 123);
+            this.groupBox16.Location = new System.Drawing.Point(614, 123);
             this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(445, 335);
+            this.groupBox16.Size = new System.Drawing.Size(445, 340);
             this.groupBox16.TabIndex = 73;
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "Organizer Log";
@@ -4692,7 +4693,7 @@ namespace Assistant
             this.organizerLogBox.ItemHeight = 20;
             this.organizerLogBox.Location = new System.Drawing.Point(10, 28);
             this.organizerLogBox.Name = "organizerLogBox";
-            this.organizerLogBox.Size = new System.Drawing.Size(424, 204);
+            this.organizerLogBox.Size = new System.Drawing.Size(424, 104);
             this.organizerLogBox.TabIndex = 0;
             // 
             // label27
@@ -4777,7 +4778,7 @@ namespace Assistant
             this.VendorBuy.Location = new System.Drawing.Point(4, 29);
             this.VendorBuy.Name = "VendorBuy";
             this.VendorBuy.Padding = new System.Windows.Forms.Padding(3);
-            this.VendorBuy.Size = new System.Drawing.Size(1077, 500);
+            this.VendorBuy.Size = new System.Drawing.Size(1749, 822);
             this.VendorBuy.TabIndex = 3;
             this.VendorBuy.Text = "Vendor Buy";
             this.VendorBuy.UseVisualStyleBackColor = true;
@@ -4788,9 +4789,11 @@ namespace Assistant
             this.buyToCompleteAmount.AutoSize = true;
             this.buyToCompleteAmount.Location = new System.Drawing.Point(624, 126);
             this.buyToCompleteAmount.Name = "buyToCompleteAmount";
-            this.buyToCompleteAmount.Size = new System.Drawing.Size(103, 24);
+            this.buyToCompleteAmount.Size = new System.Drawing.Size(94, 24);
             this.buyToCompleteAmount.TabIndex = 91;
-            this.buyToCompleteAmount.Text = "Complete";
+            this.buyToCompleteAmount.Tag = "VendorBuyRestockTag";
+            this.buyToCompleteAmount.Text = "Restock";
+            this.m_Tip.SetToolTip(this.buyToCompleteAmount, "Buys enough items to refill your backpack to the specified amount");
             this.buyToCompleteAmount.CheckedChanged += new System.EventHandler(this.buyComplete_CheckedChanged);
             // 
             // buyLogBox
@@ -4799,16 +4802,16 @@ namespace Assistant
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buyLogBox.FormattingEnabled = true;
             this.buyLogBox.ItemHeight = 20;
-            this.buyLogBox.Location = new System.Drawing.Point(628, 259);
+            this.buyLogBox.Location = new System.Drawing.Point(627, 259);
             this.buyLogBox.Name = "buyLogBox";
-            this.buyLogBox.Size = new System.Drawing.Size(424, 84);
+            this.buyLogBox.Size = new System.Drawing.Size(426, 24);
             this.buyLogBox.TabIndex = 0;
             // 
             // buyCompareNameCheckBox
             // 
             this.buyCompareNameCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buyCompareNameCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buyCompareNameCheckBox.Location = new System.Drawing.Point(615, 95);
+            this.buyCompareNameCheckBox.Location = new System.Drawing.Point(616, 95);
             this.buyCompareNameCheckBox.Name = "buyCompareNameCheckBox";
             this.buyCompareNameCheckBox.Size = new System.Drawing.Size(216, 32);
             this.buyCompareNameCheckBox.TabIndex = 90;
@@ -4844,7 +4847,7 @@ namespace Assistant
             this.vendorbuydataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.vendorbuydataGridView.RowHeadersVisible = false;
             this.vendorbuydataGridView.RowHeadersWidth = 62;
-            this.vendorbuydataGridView.Size = new System.Drawing.Size(589, 369);
+            this.vendorbuydataGridView.Size = new System.Drawing.Size(588, 374);
             this.vendorbuydataGridView.TabIndex = 88;
             this.vendorbuydataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
             this.vendorbuydataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.vendorbuydataGridView_CellEndEdit);
@@ -4918,9 +4921,9 @@ namespace Assistant
             // 
             this.groupBox18.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox18.Location = new System.Drawing.Point(615, 238);
+            this.groupBox18.Location = new System.Drawing.Point(614, 238);
             this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(445, 210);
+            this.groupBox18.Size = new System.Drawing.Size(445, 215);
             this.groupBox18.TabIndex = 73;
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "Buy Log";
@@ -4937,7 +4940,7 @@ namespace Assistant
             // buyAddTargetB
             // 
             this.buyAddTargetB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buyAddTargetB.Location = new System.Drawing.Point(919, 57);
+            this.buyAddTargetB.Location = new System.Drawing.Point(918, 57);
             this.buyAddTargetB.Name = "buyAddTargetB";
             this.buyAddTargetB.Size = new System.Drawing.Size(144, 31);
             this.buyAddTargetB.TabIndex = 45;
@@ -4948,7 +4951,7 @@ namespace Assistant
             // 
             this.buyEnableCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buyEnableCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buyEnableCheckBox.Location = new System.Drawing.Point(615, 64);
+            this.buyEnableCheckBox.Location = new System.Drawing.Point(616, 64);
             this.buyEnableCheckBox.Name = "buyEnableCheckBox";
             this.buyEnableCheckBox.Size = new System.Drawing.Size(216, 32);
             this.buyEnableCheckBox.TabIndex = 72;
@@ -4998,7 +5001,7 @@ namespace Assistant
             this.VendorSell.Location = new System.Drawing.Point(4, 29);
             this.VendorSell.Name = "VendorSell";
             this.VendorSell.Padding = new System.Windows.Forms.Padding(3);
-            this.VendorSell.Size = new System.Drawing.Size(1077, 500);
+            this.VendorSell.Size = new System.Drawing.Size(1749, 822);
             this.VendorSell.TabIndex = 4;
             this.VendorSell.Text = "Vendor Sell";
             this.VendorSell.UseVisualStyleBackColor = true;
@@ -5070,7 +5073,7 @@ namespace Assistant
             this.vendorsellGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.vendorsellGridView.RowHeadersVisible = false;
             this.vendorsellGridView.RowHeadersWidth = 62;
-            this.vendorsellGridView.Size = new System.Drawing.Size(589, 316);
+            this.vendorsellGridView.Size = new System.Drawing.Size(588, 321);
             this.vendorsellGridView.TabIndex = 87;
             this.vendorsellGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
             this.vendorsellGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.vendorsellGridView_CellEndEdit);
@@ -5145,9 +5148,9 @@ namespace Assistant
             this.groupBox20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox20.Controls.Add(this.sellLogBox);
-            this.groupBox20.Location = new System.Drawing.Point(615, 105);
+            this.groupBox20.Location = new System.Drawing.Point(614, 105);
             this.groupBox20.Name = "groupBox20";
-            this.groupBox20.Size = new System.Drawing.Size(445, 343);
+            this.groupBox20.Size = new System.Drawing.Size(445, 348);
             this.groupBox20.TabIndex = 83;
             this.groupBox20.TabStop = false;
             this.groupBox20.Text = "Sell Log";
@@ -5160,7 +5163,7 @@ namespace Assistant
             this.sellLogBox.ItemHeight = 20;
             this.sellLogBox.Location = new System.Drawing.Point(11, 26);
             this.sellLogBox.Name = "sellLogBox";
-            this.sellLogBox.Size = new System.Drawing.Size(424, 244);
+            this.sellLogBox.Size = new System.Drawing.Size(424, 164);
             this.sellLogBox.TabIndex = 0;
             // 
             // label26
@@ -5239,7 +5242,7 @@ namespace Assistant
             this.Dress.Location = new System.Drawing.Point(4, 29);
             this.Dress.Name = "Dress";
             this.Dress.Padding = new System.Windows.Forms.Padding(3);
-            this.Dress.Size = new System.Drawing.Size(1077, 500);
+            this.Dress.Size = new System.Drawing.Size(1749, 822);
             this.Dress.TabIndex = 5;
             this.Dress.Text = "Dress / Arm";
             this.Dress.UseVisualStyleBackColor = true;
@@ -5257,7 +5260,7 @@ namespace Assistant
             // dressStopButton
             // 
             this.dressStopButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dressStopButton.Location = new System.Drawing.Point(692, 85);
+            this.dressStopButton.Location = new System.Drawing.Point(691, 85);
             this.dressStopButton.Name = "dressStopButton";
             this.dressStopButton.Size = new System.Drawing.Size(99, 29);
             this.dressStopButton.TabIndex = 91;
@@ -5268,7 +5271,7 @@ namespace Assistant
             // 
             this.dressConflictCheckB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dressConflictCheckB.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.dressConflictCheckB.Location = new System.Drawing.Point(476, 123);
+            this.dressConflictCheckB.Location = new System.Drawing.Point(477, 123);
             this.dressConflictCheckB.Name = "dressConflictCheckB";
             this.dressConflictCheckB.Size = new System.Drawing.Size(205, 52);
             this.dressConflictCheckB.TabIndex = 90;
@@ -5278,9 +5281,9 @@ namespace Assistant
             // dressBagLabel
             // 
             this.dressBagLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dressBagLabel.Location = new System.Drawing.Point(913, 235);
+            this.dressBagLabel.Location = new System.Drawing.Point(914, 235);
             this.dressBagLabel.Name = "dressBagLabel";
-            this.dressBagLabel.Size = new System.Drawing.Size(131, 28);
+            this.dressBagLabel.Size = new System.Drawing.Size(129, 28);
             this.dressBagLabel.TabIndex = 89;
             this.dressBagLabel.Text = "0x00000000";
             // 
@@ -5348,7 +5351,7 @@ namespace Assistant
             // 
             this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(876, 89);
+            this.label29.Location = new System.Drawing.Point(877, 89);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(159, 20);
             this.label29.TabIndex = 76;
@@ -5359,9 +5362,9 @@ namespace Assistant
             this.groupBox21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox21.Controls.Add(this.dressLogBox);
-            this.groupBox21.Location = new System.Drawing.Point(479, 196);
+            this.groupBox21.Location = new System.Drawing.Point(478, 196);
             this.groupBox21.Name = "groupBox21";
-            this.groupBox21.Size = new System.Drawing.Size(411, 258);
+            this.groupBox21.Size = new System.Drawing.Size(412, 261);
             this.groupBox21.TabIndex = 74;
             this.groupBox21.TabStop = false;
             this.groupBox21.Text = "Organizer Log";
@@ -5374,7 +5377,7 @@ namespace Assistant
             this.dressLogBox.ItemHeight = 20;
             this.dressLogBox.Location = new System.Drawing.Point(5, 19);
             this.dressLogBox.Name = "dressLogBox";
-            this.dressLogBox.Size = new System.Drawing.Size(400, 144);
+            this.dressLogBox.Size = new System.Drawing.Size(400, 84);
             this.dressLogBox.TabIndex = 0;
             // 
             // dressSetBagB
@@ -5392,7 +5395,7 @@ namespace Assistant
             this.undressExecuteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.undressExecuteButton.Location = new System.Drawing.Point(586, 85);
             this.undressExecuteButton.Name = "undressExecuteButton";
-            this.undressExecuteButton.Size = new System.Drawing.Size(98, 29);
+            this.undressExecuteButton.Size = new System.Drawing.Size(99, 29);
             this.undressExecuteButton.TabIndex = 87;
             this.undressExecuteButton.Text = "Undres";
             this.undressExecuteButton.Click += new System.EventHandler(this.razorButton10_Click);
@@ -5400,9 +5403,9 @@ namespace Assistant
             // dressExecuteButton
             // 
             this.dressExecuteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dressExecuteButton.Location = new System.Drawing.Point(479, 85);
+            this.dressExecuteButton.Location = new System.Drawing.Point(478, 85);
             this.dressExecuteButton.Name = "dressExecuteButton";
-            this.dressExecuteButton.Size = new System.Drawing.Size(99, 29);
+            this.dressExecuteButton.Size = new System.Drawing.Size(100, 29);
             this.dressExecuteButton.TabIndex = 86;
             this.dressExecuteButton.Text = "Dress";
             this.dressExecuteButton.Click += new System.EventHandler(this.dressExecuteButton_Click);
@@ -5438,7 +5441,7 @@ namespace Assistant
             this.dressListView.Location = new System.Drawing.Point(10, 75);
             this.dressListView.MultiSelect = false;
             this.dressListView.Name = "dressListView";
-            this.dressListView.Size = new System.Drawing.Size(464, 385);
+            this.dressListView.Size = new System.Drawing.Size(464, 391);
             this.dressListView.TabIndex = 64;
             this.dressListView.UseCompatibleStateImageBehavior = false;
             this.dressListView.View = System.Windows.Forms.View.Details;
@@ -5518,7 +5521,7 @@ namespace Assistant
             this.friends.Location = new System.Drawing.Point(4, 29);
             this.friends.Name = "friends";
             this.friends.Padding = new System.Windows.Forms.Padding(3);
-            this.friends.Size = new System.Drawing.Size(1077, 500);
+            this.friends.Size = new System.Drawing.Size(1749, 822);
             this.friends.TabIndex = 6;
             this.friends.Text = "Friends";
             this.friends.UseVisualStyleBackColor = true;
@@ -5539,8 +5542,8 @@ namespace Assistant
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.friendguildListView);
-            this.splitContainer1.Size = new System.Drawing.Size(388, 416);
-            this.splitContainer1.SplitterDistance = 202;
+            this.splitContainer1.Size = new System.Drawing.Size(388, 419);
+            this.splitContainer1.SplitterDistance = 200;
             this.splitContainer1.TabIndex = 83;
             // 
             // groupBox34
@@ -5550,7 +5553,7 @@ namespace Assistant
             this.groupBox34.Controls.Add(this.FriendGuildRemoveButton);
             this.groupBox34.Location = new System.Drawing.Point(893, 336);
             this.groupBox34.Name = "groupBox34";
-            this.groupBox34.Size = new System.Drawing.Size(170, 110);
+            this.groupBox34.Size = new System.Drawing.Size(169, 110);
             this.groupBox34.TabIndex = 82;
             this.groupBox34.TabStop = false;
             this.groupBox34.Text = "Guild Friend";
@@ -5582,7 +5585,7 @@ namespace Assistant
             this.groupBox33.Controls.Add(this.COMfriendCheckBox);
             this.groupBox33.Location = new System.Drawing.Point(893, 215);
             this.groupBox33.Name = "groupBox33";
-            this.groupBox33.Size = new System.Drawing.Size(170, 112);
+            this.groupBox33.Size = new System.Drawing.Size(169, 112);
             this.groupBox33.TabIndex = 78;
             this.groupBox33.TabStop = false;
             this.groupBox33.Text = "Faction Friend";
@@ -5631,7 +5634,7 @@ namespace Assistant
             this.friendGroupBox.Controls.Add(this.friendAddButton);
             this.friendGroupBox.Location = new System.Drawing.Point(893, 60);
             this.friendGroupBox.Name = "friendGroupBox";
-            this.friendGroupBox.Size = new System.Drawing.Size(170, 146);
+            this.friendGroupBox.Size = new System.Drawing.Size(169, 146);
             this.friendGroupBox.TabIndex = 76;
             this.friendGroupBox.TabStop = false;
             this.friendGroupBox.Text = "User Friend";
@@ -5669,7 +5672,7 @@ namespace Assistant
             this.friendloggroupBox.Controls.Add(this.friendLogBox);
             this.friendloggroupBox.Location = new System.Drawing.Point(450, 191);
             this.friendloggroupBox.Name = "friendloggroupBox";
-            this.friendloggroupBox.Size = new System.Drawing.Size(434, 299);
+            this.friendloggroupBox.Size = new System.Drawing.Size(433, 299);
             this.friendloggroupBox.TabIndex = 74;
             this.friendloggroupBox.TabStop = false;
             this.friendloggroupBox.Text = "Friend Log";
@@ -5683,7 +5686,7 @@ namespace Assistant
             this.friendLogBox.ItemHeight = 20;
             this.friendLogBox.Location = new System.Drawing.Point(10, 28);
             this.friendLogBox.Name = "friendLogBox";
-            this.friendLogBox.Size = new System.Drawing.Size(414, 224);
+            this.friendLogBox.Size = new System.Drawing.Size(414, 144);
             this.friendLogBox.TabIndex = 0;
             // 
             // friendIncludePartyCheckBox
@@ -5691,7 +5694,7 @@ namespace Assistant
             this.friendIncludePartyCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.friendIncludePartyCheckBox.Location = new System.Drawing.Point(450, 148);
             this.friendIncludePartyCheckBox.Name = "friendIncludePartyCheckBox";
-            this.friendIncludePartyCheckBox.Size = new System.Drawing.Size(375, 32);
+            this.friendIncludePartyCheckBox.Size = new System.Drawing.Size(376, 32);
             this.friendIncludePartyCheckBox.TabIndex = 68;
             this.friendIncludePartyCheckBox.Text = "Include party member in Friend List";
             this.friendIncludePartyCheckBox.CheckedChanged += new System.EventHandler(this.friendIncludePartyCheckBox_CheckedChanged);
@@ -5701,7 +5704,7 @@ namespace Assistant
             this.friendAttackCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.friendAttackCheckBox.Location = new System.Drawing.Point(450, 111);
             this.friendAttackCheckBox.Name = "friendAttackCheckBox";
-            this.friendAttackCheckBox.Size = new System.Drawing.Size(386, 32);
+            this.friendAttackCheckBox.Size = new System.Drawing.Size(385, 32);
             this.friendAttackCheckBox.TabIndex = 67;
             this.friendAttackCheckBox.Text = "Prevent attacking friends in warmode";
             this.friendAttackCheckBox.CheckedChanged += new System.EventHandler(this.friendAttackCheckBox_CheckedChanged);
@@ -5711,7 +5714,7 @@ namespace Assistant
             this.friendPartyCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.friendPartyCheckBox.Location = new System.Drawing.Point(450, 75);
             this.friendPartyCheckBox.Name = "friendPartyCheckBox";
-            this.friendPartyCheckBox.Size = new System.Drawing.Size(386, 32);
+            this.friendPartyCheckBox.Size = new System.Drawing.Size(385, 32);
             this.friendPartyCheckBox.TabIndex = 66;
             this.friendPartyCheckBox.Text = "Autoaccept party from Friends";
             this.friendPartyCheckBox.CheckedChanged += new System.EventHandler(this.friendPartyCheckBox_CheckedChanged);
@@ -5771,7 +5774,7 @@ namespace Assistant
             this.restock.Location = new System.Drawing.Point(4, 29);
             this.restock.Name = "restock";
             this.restock.Padding = new System.Windows.Forms.Padding(3);
-            this.restock.Size = new System.Drawing.Size(1077, 500);
+            this.restock.Size = new System.Drawing.Size(1749, 822);
             this.restock.TabIndex = 7;
             this.restock.Text = "Restock";
             this.restock.UseVisualStyleBackColor = true;
@@ -5896,7 +5899,7 @@ namespace Assistant
             this.restockdataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.restockdataGridView.RowHeadersVisible = false;
             this.restockdataGridView.RowHeadersWidth = 62;
-            this.restockdataGridView.Size = new System.Drawing.Size(591, 290);
+            this.restockdataGridView.Size = new System.Drawing.Size(591, 295);
             this.restockdataGridView.TabIndex = 90;
             this.restockdataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
             this.restockdataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.restockdataGridView_CellEndEdit);
@@ -5971,9 +5974,9 @@ namespace Assistant
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.restockLogBox);
-            this.groupBox2.Location = new System.Drawing.Point(615, 123);
+            this.groupBox2.Location = new System.Drawing.Point(614, 123);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(445, 335);
+            this.groupBox2.Size = new System.Drawing.Size(445, 340);
             this.groupBox2.TabIndex = 83;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Restock Log";
@@ -5986,14 +5989,14 @@ namespace Assistant
             this.restockLogBox.ItemHeight = 20;
             this.restockLogBox.Location = new System.Drawing.Point(11, 26);
             this.restockLogBox.Name = "restockLogBox";
-            this.restockLogBox.Size = new System.Drawing.Size(424, 204);
+            this.restockLogBox.Size = new System.Drawing.Size(424, 104);
             this.restockLogBox.TabIndex = 0;
             // 
             // label13
             // 
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(689, 79);
+            this.label13.Location = new System.Drawing.Point(690, 79);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(159, 20);
             this.label13.TabIndex = 82;
@@ -6011,7 +6014,7 @@ namespace Assistant
             // restockAddTargetButton
             // 
             this.restockAddTargetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.restockAddTargetButton.Location = new System.Drawing.Point(919, 57);
+            this.restockAddTargetButton.Location = new System.Drawing.Point(918, 57);
             this.restockAddTargetButton.Name = "restockAddTargetButton";
             this.restockAddTargetButton.Size = new System.Drawing.Size(144, 31);
             this.restockAddTargetButton.TabIndex = 47;
@@ -6051,7 +6054,7 @@ namespace Assistant
             this.restockDragDelay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.restockDragDelay.BackColor = System.Drawing.Color.White;
             this.restockDragDelay.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.restockDragDelay.Location = new System.Drawing.Point(615, 75);
+            this.restockDragDelay.Location = new System.Drawing.Point(614, 75);
             this.restockDragDelay.Name = "restockDragDelay";
             this.restockDragDelay.Size = new System.Drawing.Size(72, 26);
             this.restockDragDelay.TabIndex = 81;
@@ -6066,7 +6069,7 @@ namespace Assistant
             this.bandageheal.Location = new System.Drawing.Point(4, 29);
             this.bandageheal.Name = "bandageheal";
             this.bandageheal.Padding = new System.Windows.Forms.Padding(3);
-            this.bandageheal.Size = new System.Drawing.Size(1077, 500);
+            this.bandageheal.Size = new System.Drawing.Size(1749, 822);
             this.bandageheal.TabIndex = 8;
             this.bandageheal.Text = "Bandage Heal";
             this.bandageheal.UseVisualStyleBackColor = true;
@@ -6074,7 +6077,7 @@ namespace Assistant
             // bandagehealAutostartCheckBox
             // 
             this.bandagehealAutostartCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bandagehealAutostartCheckBox.Location = new System.Drawing.Point(871, 22);
+            this.bandagehealAutostartCheckBox.Location = new System.Drawing.Point(870, 22);
             this.bandagehealAutostartCheckBox.Name = "bandagehealAutostartCheckBox";
             this.bandagehealAutostartCheckBox.Size = new System.Drawing.Size(189, 32);
             this.bandagehealAutostartCheckBox.TabIndex = 75;
@@ -6114,9 +6117,9 @@ namespace Assistant
             this.groupBox6.Controls.Add(this.bandagehealsettargetButton);
             this.groupBox6.Controls.Add(this.bandagehealtargetComboBox);
             this.groupBox6.Controls.Add(this.label14);
-            this.groupBox6.Location = new System.Drawing.Point(505, 63);
+            this.groupBox6.Location = new System.Drawing.Point(506, 63);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(555, 431);
+            this.groupBox6.Size = new System.Drawing.Size(553, 431);
             this.groupBox6.TabIndex = 74;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Settings";
@@ -6439,7 +6442,7 @@ namespace Assistant
             this.groupBox5.Controls.Add(this.bandagehealLogBox);
             this.groupBox5.Location = new System.Drawing.Point(10, 9);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(463, 454);
+            this.groupBox5.Size = new System.Drawing.Size(464, 460);
             this.groupBox5.TabIndex = 54;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Bandage Heal Log";
@@ -6453,16 +6456,16 @@ namespace Assistant
             this.bandagehealLogBox.ItemHeight = 20;
             this.bandagehealLogBox.Location = new System.Drawing.Point(11, 26);
             this.bandagehealLogBox.Name = "bandagehealLogBox";
-            this.bandagehealLogBox.Size = new System.Drawing.Size(442, 364);
+            this.bandagehealLogBox.Size = new System.Drawing.Size(442, 284);
             this.bandagehealLogBox.TabIndex = 0;
             // 
             // bandagehealenableCheckBox
             // 
             this.bandagehealenableCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bandagehealenableCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bandagehealenableCheckBox.Location = new System.Drawing.Point(505, 22);
+            this.bandagehealenableCheckBox.Location = new System.Drawing.Point(506, 22);
             this.bandagehealenableCheckBox.Name = "bandagehealenableCheckBox";
-            this.bandagehealenableCheckBox.Size = new System.Drawing.Size(235, 32);
+            this.bandagehealenableCheckBox.Size = new System.Drawing.Size(233, 32);
             this.bandagehealenableCheckBox.TabIndex = 73;
             this.bandagehealenableCheckBox.Text = "Enable Bandage Heal";
             this.bandagehealenableCheckBox.CheckedChanged += new System.EventHandler(this.bandagehealenableCheckBox_CheckedChanged);
@@ -6470,9 +6473,9 @@ namespace Assistant
             // toolbarTab
             // 
             this.toolbarTab.Controls.Add(this.toolbarstab);
-            this.toolbarTab.Location = new System.Drawing.Point(4, 54);
+            this.toolbarTab.Location = new System.Drawing.Point(4, 29);
             this.toolbarTab.Name = "toolbarTab";
-            this.toolbarTab.Size = new System.Drawing.Size(1100, 573);
+            this.toolbarTab.Size = new System.Drawing.Size(1771, 895);
             this.toolbarTab.TabIndex = 1;
             this.toolbarTab.Text = "Toolbars";
             // 
@@ -7260,9 +7263,9 @@ namespace Assistant
             this.emptyTab.Controls.Add(this.groupBox45);
             this.emptyTab.Controls.Add(this.groupBox44);
             this.emptyTab.Controls.Add(this.groupBox43);
-            this.emptyTab.Location = new System.Drawing.Point(4, 54);
+            this.emptyTab.Location = new System.Drawing.Point(4, 29);
             this.emptyTab.Name = "emptyTab";
-            this.emptyTab.Size = new System.Drawing.Size(1100, 573);
+            this.emptyTab.Size = new System.Drawing.Size(1771, 895);
             this.emptyTab.TabIndex = 3;
             this.emptyTab.Text = "Targetting";
             // 
@@ -7955,7 +7958,7 @@ namespace Assistant
             this.targetlistBox.ItemHeight = 20;
             this.targetlistBox.Location = new System.Drawing.Point(11, 105);
             this.targetlistBox.Name = "targetlistBox";
-            this.targetlistBox.Size = new System.Drawing.Size(181, 284);
+            this.targetlistBox.Size = new System.Drawing.Size(181, 224);
             this.targetlistBox.TabIndex = 0;
             this.targetlistBox.SelectedIndexChanged += new System.EventHandler(this.targetlistBox_SelectedIndexChanged);
             // 
@@ -7970,18 +7973,18 @@ namespace Assistant
             this.skillsTab.Controls.Add(this.setlocks);
             this.skillsTab.Controls.Add(this.resetDelta);
             this.skillsTab.Controls.Add(this.skillList);
-            this.skillsTab.Location = new System.Drawing.Point(4, 54);
+            this.skillsTab.Location = new System.Drawing.Point(4, 29);
             this.skillsTab.Name = "skillsTab";
-            this.skillsTab.Size = new System.Drawing.Size(1100, 573);
+            this.skillsTab.Size = new System.Drawing.Size(1771, 895);
             this.skillsTab.TabIndex = 2;
             this.skillsTab.Text = "Skills";
             // 
             // dispDelta
             // 
             this.dispDelta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dispDelta.Location = new System.Drawing.Point(858, 210);
+            this.dispDelta.Location = new System.Drawing.Point(1530, 210);
             this.dispDelta.Name = "dispDelta";
-            this.dispDelta.Size = new System.Drawing.Size(181, 33);
+            this.dispDelta.Size = new System.Drawing.Size(180, 33);
             this.dispDelta.TabIndex = 11;
             this.dispDelta.Text = "Display Changes";
             this.dispDelta.CheckedChanged += new System.EventHandler(this.dispDelta_CheckedChanged);
@@ -7989,9 +7992,9 @@ namespace Assistant
             // skillCopyAll
             // 
             this.skillCopyAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.skillCopyAll.Location = new System.Drawing.Point(858, 159);
+            this.skillCopyAll.Location = new System.Drawing.Point(1530, 159);
             this.skillCopyAll.Name = "skillCopyAll";
-            this.skillCopyAll.Size = new System.Drawing.Size(210, 30);
+            this.skillCopyAll.Size = new System.Drawing.Size(211, 30);
             this.skillCopyAll.TabIndex = 9;
             this.skillCopyAll.Text = "Copy All";
             this.skillCopyAll.Click += new System.EventHandler(this.skillCopyAll_Click);
@@ -7999,9 +8002,9 @@ namespace Assistant
             // skillCopySel
             // 
             this.skillCopySel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.skillCopySel.Location = new System.Drawing.Point(858, 118);
+            this.skillCopySel.Location = new System.Drawing.Point(1530, 118);
             this.skillCopySel.Name = "skillCopySel";
-            this.skillCopySel.Size = new System.Drawing.Size(210, 31);
+            this.skillCopySel.Size = new System.Drawing.Size(211, 31);
             this.skillCopySel.TabIndex = 8;
             this.skillCopySel.Text = "Copy Selected";
             this.skillCopySel.Click += new System.EventHandler(this.skillCopySel_Click);
@@ -8009,18 +8012,18 @@ namespace Assistant
             // baseTotal
             // 
             this.baseTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.baseTotal.Location = new System.Drawing.Point(970, 256);
+            this.baseTotal.Location = new System.Drawing.Point(1642, 256);
             this.baseTotal.Name = "baseTotal";
             this.baseTotal.ReadOnly = true;
-            this.baseTotal.Size = new System.Drawing.Size(69, 26);
+            this.baseTotal.Size = new System.Drawing.Size(68, 26);
             this.baseTotal.TabIndex = 7;
             // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Location = new System.Drawing.Point(858, 262);
+            this.label1.Location = new System.Drawing.Point(1530, 262);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 22);
+            this.label1.Size = new System.Drawing.Size(104, 22);
             this.label1.TabIndex = 6;
             this.label1.Text = "Base Total:";
             // 
@@ -8033,7 +8036,7 @@ namespace Assistant
             "Up",
             "Down",
             "Locked"});
-            this.locks.Location = new System.Drawing.Point(988, 66);
+            this.locks.Location = new System.Drawing.Point(1661, 66);
             this.locks.Name = "locks";
             this.locks.Size = new System.Drawing.Size(80, 30);
             this.locks.TabIndex = 5;
@@ -8041,9 +8044,9 @@ namespace Assistant
             // setlocks
             // 
             this.setlocks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.setlocks.Location = new System.Drawing.Point(858, 67);
+            this.setlocks.Location = new System.Drawing.Point(1530, 67);
             this.setlocks.Name = "setlocks";
-            this.setlocks.Size = new System.Drawing.Size(122, 29);
+            this.setlocks.Size = new System.Drawing.Size(121, 29);
             this.setlocks.TabIndex = 4;
             this.setlocks.Text = "Set all locks:";
             this.setlocks.Click += new System.EventHandler(this.OnSetSkillLocks);
@@ -8051,9 +8054,9 @@ namespace Assistant
             // resetDelta
             // 
             this.resetDelta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.resetDelta.Location = new System.Drawing.Point(858, 19);
+            this.resetDelta.Location = new System.Drawing.Point(1530, 19);
             this.resetDelta.Name = "resetDelta";
-            this.resetDelta.Size = new System.Drawing.Size(210, 29);
+            this.resetDelta.Size = new System.Drawing.Size(211, 29);
             this.resetDelta.TabIndex = 3;
             this.resetDelta.Text = "Reset  +/-";
             this.resetDelta.Click += new System.EventHandler(this.OnResetSkillDelta);
@@ -8075,7 +8078,7 @@ namespace Assistant
             this.skillList.HideSelection = false;
             this.skillList.Location = new System.Drawing.Point(11, 19);
             this.skillList.Name = "skillList";
-            this.skillList.Size = new System.Drawing.Size(818, 523);
+            this.skillList.Size = new System.Drawing.Size(1490, 845);
             this.skillList.TabIndex = 1;
             this.skillList.UseCompatibleStateImageBehavior = false;
             this.skillList.View = System.Windows.Forms.View.Details;
@@ -8118,10 +8121,10 @@ namespace Assistant
             this.enhancedHotKeytabPage.Controls.Add(this.groupBox28);
             this.enhancedHotKeytabPage.Controls.Add(this.groupBox27);
             this.enhancedHotKeytabPage.Controls.Add(this.hotkeytreeView);
-            this.enhancedHotKeytabPage.Location = new System.Drawing.Point(4, 54);
+            this.enhancedHotKeytabPage.Location = new System.Drawing.Point(4, 29);
             this.enhancedHotKeytabPage.Name = "enhancedHotKeytabPage";
             this.enhancedHotKeytabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.enhancedHotKeytabPage.Size = new System.Drawing.Size(1100, 573);
+            this.enhancedHotKeytabPage.Size = new System.Drawing.Size(1771, 895);
             this.enhancedHotKeytabPage.TabIndex = 15;
             this.enhancedHotKeytabPage.Text = "HotKey";
             this.enhancedHotKeytabPage.UseVisualStyleBackColor = true;
@@ -8133,9 +8136,9 @@ namespace Assistant
             this.groupBox8.Controls.Add(this.hotkeyKeyMasterTextBox);
             this.groupBox8.Controls.Add(this.hotkeyMasterSetButton);
             this.groupBox8.Controls.Add(this.label42);
-            this.groupBox8.Location = new System.Drawing.Point(834, 153);
+            this.groupBox8.Location = new System.Drawing.Point(1506, 153);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(250, 123);
+            this.groupBox8.Size = new System.Drawing.Size(251, 123);
             this.groupBox8.TabIndex = 4;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Master Key";
@@ -8191,9 +8194,9 @@ namespace Assistant
             this.groupBox28.Controls.Add(this.hotkeyMEnableButton);
             this.groupBox28.Controls.Add(this.hotkeyKeyMasterLabel);
             this.groupBox28.Controls.Add(this.hotkeyStatusLabel);
-            this.groupBox28.Location = new System.Drawing.Point(834, 10);
+            this.groupBox28.Location = new System.Drawing.Point(1506, 10);
             this.groupBox28.Name = "groupBox28";
-            this.groupBox28.Size = new System.Drawing.Size(250, 135);
+            this.groupBox28.Size = new System.Drawing.Size(251, 135);
             this.groupBox28.TabIndex = 3;
             this.groupBox28.TabStop = false;
             this.groupBox28.Text = "General";
@@ -8244,9 +8247,9 @@ namespace Assistant
             this.groupBox27.Controls.Add(this.hotkeySetButton);
             this.groupBox27.Controls.Add(this.label39);
             this.groupBox27.Controls.Add(this.hotkeytextbox);
-            this.groupBox27.Location = new System.Drawing.Point(834, 285);
+            this.groupBox27.Location = new System.Drawing.Point(1506, 285);
             this.groupBox27.Name = "groupBox27";
-            this.groupBox27.Size = new System.Drawing.Size(250, 156);
+            this.groupBox27.Size = new System.Drawing.Size(251, 156);
             this.groupBox27.TabIndex = 2;
             this.groupBox27.TabStop = false;
             this.groupBox27.Text = "Modify Key";
@@ -8309,9 +8312,9 @@ namespace Assistant
             this.hotkeytreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.hotkeytreeView.Location = new System.Drawing.Point(14, 10);
+            this.hotkeytreeView.Location = new System.Drawing.Point(16, 10);
             this.hotkeytreeView.Name = "hotkeytreeView";
-            this.hotkeytreeView.Size = new System.Drawing.Size(812, 577);
+            this.hotkeytreeView.Size = new System.Drawing.Size(1485, 833);
             this.hotkeytreeView.TabIndex = 0;
             this.hotkeytreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.hotkeytreeView_AfterSelect);
             // 
@@ -8321,10 +8324,10 @@ namespace Assistant
             this.journal.Controls.Add(this.journalFilterString);
             this.journal.Controls.Add(this.journalTextSelection);
             this.journal.Controls.Add(this.journalList);
-            this.journal.Location = new System.Drawing.Point(4, 54);
+            this.journal.Location = new System.Drawing.Point(4, 29);
             this.journal.Name = "journal";
             this.journal.Padding = new System.Windows.Forms.Padding(3);
-            this.journal.Size = new System.Drawing.Size(1100, 573);
+            this.journal.Size = new System.Drawing.Size(1771, 895);
             this.journal.TabIndex = 18;
             this.journal.Text = "Journal";
             this.journal.UseVisualStyleBackColor = true;
@@ -8345,7 +8348,7 @@ namespace Assistant
             | System.Windows.Forms.AnchorStyles.Right)));
             this.journalFilterString.Location = new System.Drawing.Point(202, 7);
             this.journalFilterString.Name = "journalFilterString";
-            this.journalFilterString.Size = new System.Drawing.Size(890, 26);
+            this.journalFilterString.Size = new System.Drawing.Size(1561, 26);
             this.journalFilterString.TabIndex = 4;
             this.journalFilterString.Leave += new System.EventHandler(this.journalFilter_TextChanged);
             // 
@@ -8370,7 +8373,7 @@ namespace Assistant
             "Special"});
             this.journalTextSelection.Location = new System.Drawing.Point(-3, 0);
             this.journalTextSelection.Name = "journalTextSelection";
-            this.journalTextSelection.Size = new System.Drawing.Size(110, 372);
+            this.journalTextSelection.Size = new System.Drawing.Size(110, 556);
             this.journalTextSelection.TabIndex = 3;
             this.journalTextSelection.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.OnJournalFilterCheck);
             // 
@@ -8392,7 +8395,7 @@ namespace Assistant
             this.journalList.RowHeadersVisible = false;
             this.journalList.RowHeadersWidth = 62;
             this.journalList.RowTemplate.Height = 28;
-            this.journalList.Size = new System.Drawing.Size(971, 498);
+            this.journalList.Size = new System.Drawing.Size(1643, 820);
             this.journalList.TabIndex = 2;
             // 
             // Type
@@ -8428,9 +8431,9 @@ namespace Assistant
             this.screenshotTab.Controls.Add(this.screensList);
             this.screenshotTab.Controls.Add(this.screenPrev);
             this.screenshotTab.Controls.Add(this.dispTime);
-            this.screenshotTab.Location = new System.Drawing.Point(4, 54);
+            this.screenshotTab.Location = new System.Drawing.Point(4, 29);
             this.screenshotTab.Name = "screenshotTab";
-            this.screenshotTab.Size = new System.Drawing.Size(1100, 573);
+            this.screenshotTab.Size = new System.Drawing.Size(1771, 895);
             this.screenshotTab.TabIndex = 8;
             this.screenshotTab.Text = "Screen Shots";
             // 
@@ -8464,7 +8467,7 @@ namespace Assistant
             // capNow
             // 
             this.capNow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.capNow.Location = new System.Drawing.Point(543, 16);
+            this.capNow.Location = new System.Drawing.Point(1214, 16);
             this.capNow.Name = "capNow";
             this.capNow.Size = new System.Drawing.Size(456, 29);
             this.capNow.TabIndex = 8;
@@ -8480,7 +8483,7 @@ namespace Assistant
             this.screenPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.screenPath.Location = new System.Drawing.Point(11, 20);
             this.screenPath.Name = "screenPath";
-            this.screenPath.Size = new System.Drawing.Size(434, 26);
+            this.screenPath.Size = new System.Drawing.Size(1106, 26);
             this.screenPath.TabIndex = 7;
             this.screenPath.TextChanged += new System.EventHandler(this.screenPath_TextChanged);
             // 
@@ -8562,10 +8565,10 @@ namespace Assistant
             this.videoTab.Controls.Add(this.videorecbutton);
             this.videoTab.Controls.Add(this.videostopbutton);
             this.videoTab.Controls.Add(this.groupBox15);
-            this.videoTab.Location = new System.Drawing.Point(4, 54);
+            this.videoTab.Location = new System.Drawing.Point(4, 29);
             this.videoTab.Name = "videoTab";
             this.videoTab.Padding = new System.Windows.Forms.Padding(3);
-            this.videoTab.Size = new System.Drawing.Size(1100, 573);
+            this.videoTab.Size = new System.Drawing.Size(1771, 895);
             this.videoTab.TabIndex = 16;
             this.videoTab.Text = "Video Recorder";
             // 
@@ -8757,10 +8760,10 @@ namespace Assistant
             this.DPStabPage.Controls.Add(this.DPSMeterStopButton);
             this.DPStabPage.Controls.Add(this.DPSMeterStartButton);
             this.DPStabPage.Controls.Add(this.DPSMeterClearButton);
-            this.DPStabPage.Location = new System.Drawing.Point(4, 54);
+            this.DPStabPage.Location = new System.Drawing.Point(4, 29);
             this.DPStabPage.Name = "DPStabPage";
             this.DPStabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.DPStabPage.Size = new System.Drawing.Size(1100, 573);
+            this.DPStabPage.Size = new System.Drawing.Size(1771, 895);
             this.DPStabPage.TabIndex = 17;
             this.DPStabPage.Text = "DPS Meter";
             this.DPStabPage.UseVisualStyleBackColor = true;
@@ -8778,9 +8781,9 @@ namespace Assistant
             this.filtergroup.Controls.Add(this.DPSmetermaxdamage);
             this.filtergroup.Controls.Add(this.label66);
             this.filtergroup.Controls.Add(this.DPSmetermindamage);
-            this.filtergroup.Location = new System.Drawing.Point(625, 77);
+            this.filtergroup.Location = new System.Drawing.Point(1298, 77);
             this.filtergroup.Name = "filtergroup";
-            this.filtergroup.Size = new System.Drawing.Size(460, 245);
+            this.filtergroup.Size = new System.Drawing.Size(459, 245);
             this.filtergroup.TabIndex = 66;
             this.filtergroup.TabStop = false;
             this.filtergroup.Text = "Filter";
@@ -8883,7 +8886,7 @@ namespace Assistant
             this.DpsMeterGridView.Name = "DpsMeterGridView";
             this.DpsMeterGridView.RowHeadersVisible = false;
             this.DpsMeterGridView.RowHeadersWidth = 62;
-            this.DpsMeterGridView.Size = new System.Drawing.Size(602, 528);
+            this.DpsMeterGridView.Size = new System.Drawing.Size(1273, 850);
             this.DpsMeterGridView.TabIndex = 65;
             // 
             // dataGridViewTextBoxColumn13
@@ -8924,7 +8927,7 @@ namespace Assistant
             this.DPSMeterStatusLabel.AutoSize = true;
             this.DPSMeterStatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DPSMeterStatusLabel.ForeColor = System.Drawing.Color.Green;
-            this.DPSMeterStatusLabel.Location = new System.Drawing.Point(1036, 484);
+            this.DPSMeterStatusLabel.Location = new System.Drawing.Point(1709, 484);
             this.DPSMeterStatusLabel.Name = "DPSMeterStatusLabel";
             this.DPSMeterStatusLabel.Size = new System.Drawing.Size(39, 20);
             this.DPSMeterStatusLabel.TabIndex = 64;
@@ -8934,7 +8937,7 @@ namespace Assistant
             // 
             this.label67.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(972, 484);
+            this.label67.Location = new System.Drawing.Point(1645, 484);
             this.label67.Name = "label67";
             this.label67.Size = new System.Drawing.Size(60, 20);
             this.label67.TabIndex = 63;
@@ -8943,9 +8946,9 @@ namespace Assistant
             // DPSMeterPauseButton
             // 
             this.DPSMeterPauseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.DPSMeterPauseButton.Location = new System.Drawing.Point(855, 25);
+            this.DPSMeterPauseButton.Location = new System.Drawing.Point(1526, 25);
             this.DPSMeterPauseButton.Name = "DPSMeterPauseButton";
-            this.DPSMeterPauseButton.Size = new System.Drawing.Size(101, 31);
+            this.DPSMeterPauseButton.Size = new System.Drawing.Size(103, 31);
             this.DPSMeterPauseButton.TabIndex = 61;
             this.DPSMeterPauseButton.Text = "Pause";
             this.DPSMeterPauseButton.Click += new System.EventHandler(this.DPSMeterPauseButton_Click);
@@ -8953,9 +8956,9 @@ namespace Assistant
             // DPSMeterStopButton
             // 
             this.DPSMeterStopButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.DPSMeterStopButton.Location = new System.Drawing.Point(745, 25);
+            this.DPSMeterStopButton.Location = new System.Drawing.Point(1418, 25);
             this.DPSMeterStopButton.Name = "DPSMeterStopButton";
-            this.DPSMeterStopButton.Size = new System.Drawing.Size(100, 31);
+            this.DPSMeterStopButton.Size = new System.Drawing.Size(99, 31);
             this.DPSMeterStopButton.TabIndex = 60;
             this.DPSMeterStopButton.Text = "Stop";
             this.DPSMeterStopButton.Click += new System.EventHandler(this.DPSMeterStopButton_Click);
@@ -8963,9 +8966,9 @@ namespace Assistant
             // DPSMeterStartButton
             // 
             this.DPSMeterStartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.DPSMeterStartButton.Location = new System.Drawing.Point(634, 25);
+            this.DPSMeterStartButton.Location = new System.Drawing.Point(1306, 25);
             this.DPSMeterStartButton.Name = "DPSMeterStartButton";
-            this.DPSMeterStartButton.Size = new System.Drawing.Size(101, 31);
+            this.DPSMeterStartButton.Size = new System.Drawing.Size(100, 31);
             this.DPSMeterStartButton.TabIndex = 59;
             this.DPSMeterStartButton.Text = "Start";
             this.DPSMeterStartButton.Click += new System.EventHandler(this.DPSMeterStartButton_Click);
@@ -8973,7 +8976,7 @@ namespace Assistant
             // DPSMeterClearButton
             // 
             this.DPSMeterClearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.DPSMeterClearButton.Location = new System.Drawing.Point(965, 25);
+            this.DPSMeterClearButton.Location = new System.Drawing.Point(1637, 25);
             this.DPSMeterClearButton.Name = "DPSMeterClearButton";
             this.DPSMeterClearButton.Size = new System.Drawing.Size(101, 31);
             this.DPSMeterClearButton.TabIndex = 58;
@@ -8990,16 +8993,16 @@ namespace Assistant
             this.statusTab.Controls.Add(this.labelStatus);
             this.statusTab.Controls.Add(this.discordrazorButton);
             this.statusTab.Controls.Add(this.razorButtonWiki);
-            this.statusTab.Location = new System.Drawing.Point(4, 54);
+            this.statusTab.Location = new System.Drawing.Point(4, 29);
             this.statusTab.Name = "statusTab";
-            this.statusTab.Size = new System.Drawing.Size(1100, 573);
+            this.statusTab.Size = new System.Drawing.Size(1771, 895);
             this.statusTab.TabIndex = 9;
             this.statusTab.Text = "Help / Status";
             // 
             // ChkForUpdate
             // 
             this.ChkForUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ChkForUpdate.Location = new System.Drawing.Point(613, 387);
+            this.ChkForUpdate.Location = new System.Drawing.Point(613, 709);
             this.ChkForUpdate.Name = "ChkForUpdate";
             this.ChkForUpdate.Size = new System.Drawing.Size(150, 54);
             this.ChkForUpdate.TabIndex = 13;
@@ -9010,7 +9013,7 @@ namespace Assistant
             // advertisementLink
             // 
             this.advertisementLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.advertisementLink.Location = new System.Drawing.Point(413, 387);
+            this.advertisementLink.Location = new System.Drawing.Point(413, 709);
             this.advertisementLink.Name = "advertisementLink";
             this.advertisementLink.Size = new System.Drawing.Size(149, 54);
             this.advertisementLink.TabIndex = 12;
@@ -9028,7 +9031,7 @@ namespace Assistant
             this.advertisement.InitialImage = ((System.Drawing.Image)(resources.GetObject("advertisement.InitialImage")));
             this.advertisement.Location = new System.Drawing.Point(5, 4);
             this.advertisement.Name = "advertisement";
-            this.advertisement.Size = new System.Drawing.Size(789, 361);
+            this.advertisement.Size = new System.Drawing.Size(1461, 683);
             this.advertisement.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.advertisement.TabIndex = 11;
             this.advertisement.TabStop = false;
@@ -9037,7 +9040,7 @@ namespace Assistant
             // 
             this.label71.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label71.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label71.Location = new System.Drawing.Point(5, 493);
+            this.label71.Location = new System.Drawing.Point(5, 814);
             this.label71.Name = "label71";
             this.label71.Size = new System.Drawing.Size(1040, 35);
             this.label71.TabIndex = 10;
@@ -9047,7 +9050,7 @@ namespace Assistant
             // 
             this.labelHotride.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelHotride.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelHotride.Location = new System.Drawing.Point(5, 445);
+            this.labelHotride.Location = new System.Drawing.Point(5, 767);
             this.labelHotride.Name = "labelHotride";
             this.labelHotride.Size = new System.Drawing.Size(1040, 66);
             this.labelHotride.TabIndex = 8;
@@ -9059,15 +9062,15 @@ namespace Assistant
             // 
             this.labelStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelStatus.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.labelStatus.Location = new System.Drawing.Point(804, 13);
+            this.labelStatus.Location = new System.Drawing.Point(1475, 13);
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(280, 392);
+            this.labelStatus.Size = new System.Drawing.Size(282, 392);
             this.labelStatus.TabIndex = 1;
             // 
             // discordrazorButton
             // 
             this.discordrazorButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.discordrazorButton.Location = new System.Drawing.Point(198, 387);
+            this.discordrazorButton.Location = new System.Drawing.Point(198, 709);
             this.discordrazorButton.Name = "discordrazorButton";
             this.discordrazorButton.Size = new System.Drawing.Size(151, 54);
             this.discordrazorButton.TabIndex = 9;
@@ -9078,7 +9081,7 @@ namespace Assistant
             // razorButtonWiki
             // 
             this.razorButtonWiki.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.razorButtonWiki.Location = new System.Drawing.Point(5, 387);
+            this.razorButtonWiki.Location = new System.Drawing.Point(5, 709);
             this.razorButtonWiki.Name = "razorButtonWiki";
             this.razorButtonWiki.Size = new System.Drawing.Size(150, 54);
             this.razorButtonWiki.TabIndex = 6;
@@ -10327,7 +10330,6 @@ namespace Assistant
                 }
             }
         }
-        
     }
 }
 
