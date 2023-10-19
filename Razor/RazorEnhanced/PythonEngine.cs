@@ -10,6 +10,14 @@ using IronPython.Runtime.Exceptions;
 using Microsoft.Scripting.Hosting;
 using IronPython.Compiler;
 using System.IO;
+using System.Diagnostics;
+using System.Threading;
+using Microsoft.Scripting;
+using FastColoredTextBoxNS;
+using Assistant;
+using System.Web.Configuration;
+using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace RazorEnhanced
 {
@@ -61,7 +69,8 @@ namespace RazorEnhanced
             }
         }
 
-        public PythonEngine(Action<string> stdoutWriter) {
+        public PythonEngine(Action<string> stdoutWriter)
+        {
             var runtime = IronPython.Hosting.Python.CreateRuntime();
             if (stdoutWriter != null)
             {
@@ -70,8 +79,6 @@ namespace RazorEnhanced
                 runtime.IO.SetOutput(outputWriter, Encoding.ASCII);
             }
             Engine = IronPython.Hosting.Python.GetEngine(runtime);
-
-
 
             //Paths for IronPython 3.4
             var paths = new List<string>();
@@ -92,7 +99,7 @@ namespace RazorEnhanced
             if (System.IO.Directory.Exists(@"C:\Program Files\IronPython 3.4"))
             {
                 paths.Add(@"C:\Program Files\IronPython 3.4");
-                paths.Add(@"C:\Program Files\IronPython 3.4\Lib"); 
+                paths.Add(@"C:\Program Files\IronPython 3.4\Lib");
                 paths.Add(@"C:\Program Files\IronPython 3.4\DLLs");
                 paths.Add(@"C:\Program Files\IronPython 3.4\Scripts");
             }
@@ -100,7 +107,6 @@ namespace RazorEnhanced
             //RE Modules list
             Modules = new Dictionary<string, object>();
             Modules.Add("Misc", new RazorEnhanced.Misc());
-
             Modules.Add("Items", new RazorEnhanced.Items());
             Modules.Add("Mobiles", new RazorEnhanced.Mobiles());
             Modules.Add("Player", new RazorEnhanced.Player());
@@ -126,7 +132,8 @@ namespace RazorEnhanced
             Modules.Add("Vendor", new RazorEnhanced.Vendor());
 
             //Setup builtin modules and scope
-            foreach (var module in Modules) {
+            foreach (var module in Modules)
+            {
                 Engine.Runtime.Globals.SetVariable(module.Key, module.Value);
                 Engine.GetBuiltinModule().SetVariable(module.Key, module.Value);
             }
@@ -137,7 +144,7 @@ namespace RazorEnhanced
             CompilerOptions.Module |= ModuleOptions.Initialize;
         }
 
-        public void Execute(String text, String path=null)
+        public void Execute(String text, String path = null)
         {
             if (Engine == null) return;
 

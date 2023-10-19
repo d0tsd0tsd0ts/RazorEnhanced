@@ -207,7 +207,7 @@ namespace Assistant
 
         internal static void SetLastTarget(Serial s, byte flagType, bool wait)
         {
-            if (m_LastTarget != null && s == Serial.Zero && m_LastTarget.Serial == s) // Non settare last se già il serial corrente
+            if (m_LastTarget != null && s == Serial.Zero && m_LastTarget.Serial == s) // Non settare last se giï¿½ il serial corrente
                 return;
 
             TargetInfo targ = new TargetInfo();

@@ -12,11 +12,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Microsoft.Scripting;
 using IronPython.Runtime;
-using IronPython.Compiler;
-using System.CodeDom.Compiler;
 using System.Reflection;
-using Microsoft.CSharp;
-using Assistant.UI;
 
 namespace RazorEnhanced
 {
@@ -253,13 +249,13 @@ namespace RazorEnhanced
             public string FullPath { get; set; }
         }
 
-
-        internal class EnhancedScript
+        public class EnhancedScript
         {
             internal bool StopMessage { get; set; }
             internal bool StartMessage { get; set; }
             private static PythonEngine m_pe;
             internal DateTime FileChangeDate { get; set; }
+
 
             internal EnhancedScript(string filename, string text, bool wait, bool loop, bool run, bool autostart)
             {
@@ -273,24 +269,30 @@ namespace RazorEnhanced
                 m_Loop = loop;
                 m_Run = run;
                 m_AutoStart = autostart;
-                m_Thread = new Thread(AsyncStart);
+
+                string fullpath = Scripts.GetFullPathForScript(m_Filename);
+                string ext = Path.GetExtension(fullpath);
+                m_Thread = new Thread(AsyncStart) { IsBackground = true };
             }
 
             internal void Start()
             {
-                if (IsRunning || !IsUnstarted)
+
+                if (m_Thread != null && m_Thread.IsAlive || IsRunning || !IsUnstarted)
+                    //Stop();
                     return;
 
                 try
                 {
-                    m_Thread.Start();
-                    while (!m_Thread.IsAlive)
-                    {
-                    }
-
-                    m_Run = true;
+                    m_Run = true;                    
+                    m_Thread?.Start();
+                    //while (!m_Thread.IsAlive)
+                    //{
+                    //}
+                    
+                } catch {
+                    Stop();
                 }
-                catch { }
             }
 
             private void AsyncStart()
@@ -343,7 +345,7 @@ namespace RazorEnhanced
                             // FileChangeDate update must be the last line of threads will messup (ex: mousewheel hotkeys)
                             FileChangeDate = System.IO.File.GetLastWriteTime(fullpath);
                         }
-                        
+
                         m_pe.Execute(m_Text);
                     }
                 }
@@ -355,6 +357,9 @@ namespace RazorEnhanced
                 catch (Exception ex)
                 {
                     if (ex is System.Threading.ThreadAbortException)
+                        return;
+
+                    if (ex is System.Threading.ThreadInterruptedException)
                         return;
 
                     string display_error = ex.Message;
@@ -419,21 +424,28 @@ namespace RazorEnhanced
 
             internal void Stop()
             {
-                if (!IsStopped)
-                    try
-                    {
-                        if (m_Thread.ThreadState != ThreadState.AbortRequested)
-                        {
-                            m_Thread.Abort();
-                        }
-                    }
-                    catch { }
+                if (m_Thread == null || !m_Thread.IsAlive)
+                {
+                    m_Run = false;
+                    return;
+                }
+
+                try
+                {
+                    m_Thread?.Interrupt();
+                    m_Thread?.Join(100);                    
+                }
+                catch { } 
+                finally 
+                {
+                    m_Run = false;
+                }
             }
 
             internal void Reset()
             {
-                m_Thread = new Thread(AsyncStart);
-                m_Run = false;
+                Stop();                   
+                m_Thread = new Thread(AsyncStart) { IsBackground = true };                
             }
 
 			internal static string Create(TracebackDelegate traceFunc)
@@ -468,12 +480,12 @@ namespace RazorEnhanced
                 {
                     switch (m_Thread.ThreadState)
                     {
-                        case ThreadState.Aborted:
-                        case ThreadState.AbortRequested:
+                        case System.Threading.ThreadState.Aborted:
+                        case System.Threading.ThreadState.AbortRequested:
                             return "Stopping";
 
-                        case ThreadState.WaitSleepJoin:
-                        case ThreadState.Running:
+                        case System.Threading.ThreadState.WaitSleepJoin:
+                        case System.Threading.ThreadState.Running:
                             return "Running";
 
                         default:
@@ -506,7 +518,7 @@ namespace RazorEnhanced
                 }
             }
 
-            private Thread m_Thread;
+            public Thread m_Thread;
 
             private readonly bool m_Wait;
             internal bool Wait
@@ -585,7 +597,7 @@ namespace RazorEnhanced
                 {
                     lock (m_Lock)
                     {
-                        if ( (m_Thread.ThreadState & (ThreadState.Unstarted | ThreadState.Stopped)) == 0)
+                        if ( (m_Thread.ThreadState & (System.Threading.ThreadState.Unstarted | System.Threading.ThreadState.Stopped)) == 0)
                         //if (m_Thread.ThreadState == ThreadState.Running || m_Thread.ThreadState == ThreadState.WaitSleepJoin || m_Thread.ThreadState == ThreadState.AbortRequested)
                             return true;
                         else
@@ -600,7 +612,7 @@ namespace RazorEnhanced
                 {
                     lock (m_Lock)
                     {
-                        if ( (m_Thread.ThreadState & ThreadState.Stopped) != 0 || (m_Thread.ThreadState & ThreadState.Aborted) != 0 )
+                        if ( (m_Thread.ThreadState & System.Threading.ThreadState.Stopped) != 0 || (m_Thread.ThreadState & System.Threading.ThreadState.Aborted) != 0 )
                             //if (m_Thread.ThreadState == ThreadState.Stopped || m_Thread.ThreadState == ThreadState.Aborted)
                             return true;
                         else
@@ -615,7 +627,7 @@ namespace RazorEnhanced
                 {
                     lock (m_Lock)
                     {
-                        if ((m_Thread.ThreadState & ThreadState.Unstarted) != 0)
+                        if ((m_Thread.ThreadState & System.Threading.ThreadState.Unstarted) != 0)
                     //  if (m_Thread.ThreadState == ThreadState.Unstarted)
                             return true;
                         else
@@ -666,7 +678,7 @@ namespace RazorEnhanced
                 if (thread == null)
                     return false;
 
-                if (thread != null && ( (thread.ThreadState & ThreadState.Running) != 0 || (thread.ThreadState & ThreadState.WaitSleepJoin) != 0 || (thread.ThreadState & ThreadState.AbortRequested) != 0 ))
+                if (thread != null && ( (thread.ThreadState & System.Threading.ThreadState.Running) != 0 || (thread.ThreadState & System.Threading.ThreadState.WaitSleepJoin) != 0 || (thread.ThreadState & System.Threading.ThreadState.AbortRequested) != 0 ))
                     return true;
                 else
                     return false;
@@ -731,21 +743,11 @@ namespace RazorEnhanced
                                 script.StopMessage = true;
                             }
 
-                            if (script.Loop)
-                            {
-                                if (script.IsStopped)
-                                    script.Reset();
+                            if (script.IsStopped)
+                                script.Reset();
 
-                                if (script.IsUnstarted)
-                                    script.Start();
-                            }
-                            else
-                            {
-                                if (script.IsStopped)
-                                    script.Reset();
-                                else if (script.IsUnstarted)
-                                    script.Start();
-                            }
+                            else if (script.IsUnstarted)
+                                script.Start();
                         }
                         else
                         {

@@ -1071,6 +1071,7 @@ namespace RazorEnhanced
             Scripts.EnhancedScript script = Scripts.Search(scriptfile);
             if (script != null)
             {
+                script.Stop();
                 script.Run = false;
             }
             else
@@ -1084,6 +1085,7 @@ namespace RazorEnhanced
         {
             foreach (RazorEnhanced.Scripts.EnhancedScript scriptdata in RazorEnhanced.Scripts.EnhancedScripts.Values.ToList())
             {
+                scriptdata.Stop();
                 scriptdata.Run = false;
             }
         }

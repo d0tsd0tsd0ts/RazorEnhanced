@@ -611,14 +611,14 @@ namespace Assistant
                     string fullpath = list[index].FullPath;
                     if (File.Exists(fullpath) && Scripts.EnhancedScripts.ContainsKey(scriptname))
                     {
-                        bool isRunning = script.IsRunning;
-
-                        if (isRunning)
+                        if (script.IsRunning)
                             script.Stop();
                         Scripts.EnhancedScripts[scriptname].FileChangeDate = DateTime.MinValue;
-                        if (isRunning)
+                        if (script.IsRunning)
                             script.Start();
                     }
+
+                    RazorEnhanced.Scripts.LoadPyLibs();
                 }
             }
         }

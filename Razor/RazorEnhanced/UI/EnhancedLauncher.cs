@@ -10,7 +10,7 @@ namespace RazorEnhanced.UI
 {
     internal partial class EnhancedLauncher : Form
     {
-        private const string m_Title = "Welcome to Razor Enhanced";
+        private const string m_Title = "Welcome to Razor Enhanced - debug";
 
         public EnhancedLauncher()
         {

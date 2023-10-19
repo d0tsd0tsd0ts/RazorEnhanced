@@ -9873,7 +9873,7 @@ namespace Assistant
 
             str = String.Format(str, Engine.Version);
             if (World.Player != null)
-                this.Text = String.Format("{1} ({2}) - {0}", str, World.Player.Name, World.ShardName);
+                this.Text = String.Format("DEBUG: {1} ({2}) - {0}", str, World.Player.Name, World.ShardName);
             else
                 this.Text = str;
 

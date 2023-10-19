@@ -424,37 +424,7 @@ namespace RazorEnhanced
                         break;
 
                     case "SList":
-                        Scripts.ScriptItem item = Scripts.FindScript(k);
-                        if (item != null)
-                        {
-                            string filename = item.Filename;
-                            Scripts.EnhancedScript script = Scripts.Search(filename);
-                            if (script != null)
-                            {
-                                if (script.Loop)
-                                {
-                                    if (script.IsUnstarted)
-                                        script.Start();
-                                    else
-                                    {
-                                        script.Stop();
-                                        script.Reset();
-                                    }
-                                }
-                                else
-                                {
-                                    if (!script.Wait && script.IsRunning)
-                                    {
-                                        script.Stop();
-                                        script.Reset();
-                                    }
-                                    else if (!script.IsRunning)
-                                    {
-                                        script.Start();
-                                    }
-                                }
-                            }
-                        }
+                        scriptExecute(k);
                         break;
 
                     case "DList":
@@ -472,6 +442,51 @@ namespace RazorEnhanced
                 }
             }
         }
+
+        internal static Scripts.ScriptItem LastScriptItem { get { return m_lastscriptitem; } set { m_lastscriptitem = value; } }
+        private static Scripts.ScriptItem m_lastscriptitem = null;
+
+        internal static Scripts.EnhancedScript LastEnhancedScript { get { return m_lastenhancedscript; } set { m_lastenhancedscript = value; } }
+        private static Scripts.EnhancedScript m_lastenhancedscript = null;
+
+        private static void scriptExecute(Keys k)
+        {            
+            Scripts.ScriptItem item = Scripts.FindScript(k);
+            if (item != null)
+            {
+                string filename = item.Filename;
+                Scripts.EnhancedScript script = Scripts.Search(filename);
+                if (script != null)
+                {
+                    if (script.Loop)
+                    {
+                        if (script.IsUnstarted) 
+                            script.Start();                     
+                        else
+                            script.Reset();
+                    }
+                    else
+                    {
+                        if (!script.Wait && !script.IsUnstarted)
+                        {
+                            script.Reset();
+                        }
+                        else if (script.IsUnstarted)
+                        {
+                            if (m_lastscriptitem != null && m_lastscriptitem.Hotkey != k)
+                            {
+                                //RazorEnhanced.Misc.SendMessage("Forcing Stop:" + m_lastenhancedscript.Filename, 33, false);
+                                m_lastenhancedscript.Reset();
+                            }
+                            script.Start();
+                            m_lastenhancedscript = script;
+                            m_lastscriptitem = item;
+                        }
+                    }
+                }
+            }
+        }
+
         private static void ProcessAgentGraphFilter(string function)
         {
             switch (function)
