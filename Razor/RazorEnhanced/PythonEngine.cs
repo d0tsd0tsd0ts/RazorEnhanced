@@ -10,14 +10,21 @@ using IronPython.Runtime.Exceptions;
 using Microsoft.Scripting.Hosting;
 using IronPython.Compiler;
 using System.IO;
+using System.Security.Cryptography;
+using RazorEnhanced.UOScript;
+using static System.Net.Mime.MediaTypeNames;
+using Microsoft.Scripting.Runtime;
+
 
 namespace RazorEnhanced
 {
     // --------------------------------------------------------- PythonEngine --------------------------------------------------------
     public class PythonEngine
     {
+        private static readonly ScriptEngine m_engine = Python.CreateEngine();
+
         public Dictionary<string, object> Modules;
-        public ScriptEngine Engine { get;  }
+        public ScriptEngine Engine { get { return m_engine; } }
         public ScriptScope Scope { get; set; }
         public String Text { get; set; }
         public String FilePath { get; set; }
@@ -26,9 +33,8 @@ namespace RazorEnhanced
         public PythonCompilerOptions CompilerOptions { get; set; }
         
 
-        public PythonEngine() {
-            var runtime = IronPython.Hosting.Python.CreateRuntime();
-            Engine = IronPython.Hosting.Python.GetEngine(runtime);
+        public PythonEngine() {            
+            ScriptRuntime runtime = m_engine.Runtime;
             
             //Paths for IronPython 3.4
             var paths = new List<string>();
@@ -95,10 +101,6 @@ namespace RazorEnhanced
             CompilerOptions.ModuleName = "__main__";
             CompilerOptions.Module |= ModuleOptions.Initialize;
         }
-        
-        ~PythonEngine() { 
-
-        }
 
         public void SetStdout(Action<string> stdoutWriter)
         {
@@ -140,9 +142,8 @@ namespace RazorEnhanced
 
         public bool Load(String text, String path = null)
         {
-            Source = null;
-            Compiled = null;
-            Scope = null;
+            if (Engine != null && Source != null && Compiled != null) { return true; }         
+
             if (Engine == null) { return false; }
 
             //CACHE (should we?)
@@ -151,33 +152,36 @@ namespace RazorEnhanced
 
             //LOAD code as text
             if (text == null) { return false; } // no text
-            Source = Engine.CreateScriptSourceFromString(text, path);
-            if (Source == null) { return false; }
+            Source = Engine.CreateScriptSourceFromString(text, path);            
 
-            //COMPILE with OPTIONS
-            //PythonCompilerOptions in order to initialize Python modules correctly, without it the Python env is half broken
+            return Compile();
+        }
+
+        private bool Compile()
+        {
+            if (Source == null) { return false; }
             Compiled = Source.Compile(CompilerOptions);
             if (Compiled == null) { return false; }
-            
             Scope = Engine.CreateScope();
             return true;
         }
+
         public bool Execute() {
             //EXECUTE
-            if (Source == null)   { return false; }
+            if (Engine == null) { return false; }
             if (Compiled == null) { return false; }
             if (Scope == null)    { return false; }
 
             Journal journal = Modules["Journal"] as Journal;
             journal.Active = true;
+            //DONT USE
+            //Execute directly, unless you are not planning to import external modules.
+            //if (Source == null) { return false; }
+            //Source.Execute(Scope);
             Compiled.Execute(Scope);
             journal.Active = false;
 
             return true;
-
-            //DONT USE
-            //Execute directly, unless you are not planning to import external modules.
-            //Source.Execute(m_Scope);
         }
     }
 

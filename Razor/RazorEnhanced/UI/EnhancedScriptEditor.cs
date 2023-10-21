@@ -665,7 +665,7 @@ namespace RazorEnhanced.UI
             string text = GetFastTextBoxText();
             m_Script.Text = text;
             m_Script.LastModified = DateTime.Now;
-            m_Script.InitEngine();
+            m_Script.InitEngine(true); // Used InitEngine because it's text, not fullpath and content. (Run direct -> ScriptEngine load)
             
             //Editor specific setup for each language Check 
             switch (m_Script.Language)
