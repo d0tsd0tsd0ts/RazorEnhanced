@@ -414,7 +414,7 @@ namespace RazorEnhanced
             {
                 lock (syncLockAgents)
                 {
-                            if (World.Player != null && Client.Running) // Parte agent
+                    if (World.Player != null && Client.Running) // Parte agent
                     {
 
                         if (AutoLoot.AutoMode && !IsRunningThread(m_AutoLootThread))
@@ -579,8 +579,7 @@ namespace RazorEnhanced
         {
             foreach (EnhancedScript script in EnhancedScript.Service.ScriptList())
             {
-                if (!script.IsRunning && script.AutoStart)
-                    script.Start();
+                if (!script.IsRunning && script.AutoStart) { script.Start(); }
             }
         }
     }
